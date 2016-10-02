@@ -32,7 +32,7 @@ class Player(telepot.helper.ChatHandler):
 
     def on_chat_message(self, msg):
         content_type, chat_type, chat_id = telepot.glance(msg)
-
+        print("hello world")
         if content_type != 'text':
            self.sender.sendMessage('Give me a number, please.')
            return
@@ -44,7 +44,10 @@ class Player(telepot.helper.ChatHandler):
             return
 
         self.arrayOfTimesCooked[command] += 1
-        output = "The scoreboard is Ana & Sikai: %d, Celeste & Wenqi: %d, Annabel & Drake: %d, Times you guys got lazy" % self.arrayOfTimesCooked[1] % self.arrayOfTimesCooked[2] % self.arrayOfTimesCooked[3] % self.arrayOfTimesCooked[0]
+        print(self.arrayOfTimesCooked[1])
+        output = "The scoreboard is Ana & Sikai: %d, Celeste & Wenqi: %d, Annabel & Drake: %d, Times you guys got lazy: %d" % (self.arrayOfTimesCooked[1], self.arrayOfTimesCooked[2], self.arrayOfTimesCooked[3], self.arrayOfTimesCooked[0])
+        # output = self.arrayOfTimesCooked[1]
+        # output = "The scoreboard is Ana & Sikai: " + self.arrayOfTimesCooked[1] +", Celeste & Wenqi: " + self.arrayOfTimesCooked[2] + ", Annabel & Drake: " + self.arrayOfTimesCooked[3] +", Times you guys got lazy: " + self.arrayOfTimesCooked[0]
         self.sender.sendMessage(output)
         # check the guess against the answer ...
         # if guess != self._answer:
@@ -67,3 +70,6 @@ bot = telepot.DelegatorBot(TOKEN, [
         per_chat_id(), create_open, Player, timeout=10000000),
 ])
 bot.message_loop(run_forever='Listening ...')
+
+
+
